@@ -28,14 +28,18 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public String createTask(String title, String body) {
+    public Task createTask(String title, String body) {
         Task newTask = new Task(title, body, null, "new");
         taskRepository.save(newTask);
-        return "task created!";
+        return newTask;
     }
 
     @PutMapping("/tasks/{id}")
-    public String updateTask(@PathVariable long id) {
-        return "updated!";
+    public Task updateTask(@PathVariable long id, Task task) {
+        System.out.println(task.getBody());
+        Task toBeUpdated = taskRepository.getOne(id);
+        toBeUpdated.updateWithTask(task);
+        taskRepository.save(toBeUpdated);
+        return toBeUpdated;
     }
 }
