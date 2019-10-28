@@ -14,7 +14,7 @@ public class TaskController {
 
     @GetMapping("/")
     public String getRoot() {
-        return "this is an api now!";
+        return "{\"source\": \"https://github.com/mnfmnfm/taskmaster-backend\"}";
     }
 
     @GetMapping("/tasks")
